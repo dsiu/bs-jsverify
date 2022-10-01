@@ -32,8 +32,10 @@ module Arbitrary = {
   external sampler: (~arb: arbitrary<'a>, ~genSize: int=?, unit) => 'a = "sampler"
 
   @send
-  external smap: (arbitrary<'a>, 'a => 'b, 'b => 'a, ~newShow: 'b => string=?) => arbitrary<'b> =
+  external smap_: (arbitrary<'a>, 'a => 'b, 'b => 'a, ~newShow: 'b => string=?) => arbitrary<'b> =
     "smap"
+
+  let smap = (aTob, bToa, ~newShow, a) => smap_(a, aTob, bToa, ~newShow)
 
   @module("jsverify")
   external bless: {.."generator": int => 'a} => arbitrary<'a> = "bless"
@@ -45,10 +47,10 @@ module Arbitrary = {
   //  @scope("Jsverify") @val external arb_js_bool: arbitrary<bool> = "bool"
 
   let arb_bool: arbitrary<bool> = smap(
-    arb_js_bool,
     x => x,
     a => a ? true : false,
     ~newShow=string_of_bool,
+    arb_js_bool,
   )
 
   @module("jsverify") external arb_nat: arbitrary<int> = "nat"
@@ -83,8 +85,11 @@ module Arbitrary = {
   external arb_date: arbitrary<Js.Date.t> = "datetime"
 
   let arb_list: arbitrary<'a> => arbitrary<list<'a>> = a =>
-    smap(arb_array(a), Array.to_list, Array.of_list, ~newShow=l =>
-      Js.Json.stringifyAny(Array.of_list(l)) |> Js.Option.getWithDefault("")
+    smap(
+      Array.to_list,
+      Array.of_list,
+      ~newShow=l => Js.Json.stringifyAny(Array.of_list(l)) |> Js.Option.getWithDefault(""),
+      arb_array(a),
     )
 
   /* * * * * * * *
@@ -171,11 +176,15 @@ module Arbitrary = {
   }
 
   let arb_option: arbitrary<'a> => arbitrary<option<'a>> = arb =>
-    smap(arb_null(arb), Js.Null.toOption, Js.Null.fromOption, ~newShow=a =>
-      switch a {
-      | Some(a') => "Some(" ++ (Js.Json.stringifyAny(a') |> Js.Option.getWithDefault("")) ++ ")"
-      | None => "None"
-      }
+    smap(
+      Js.Null.toOption,
+      Js.Null.fromOption,
+      ~newShow=a =>
+        switch a {
+        | Some(a') => "Some(" ++ (Js.Json.stringifyAny(a') |> Js.Option.getWithDefault("")) ++ ")"
+        | None => "None"
+        },
+      arb_null(arb),
     )
 
   let arb_either: (arbitrary<'a>, arbitrary<'b>) => arbitrary<Types.either<'a, 'b>> = (
@@ -183,10 +192,6 @@ module Arbitrary = {
     arb_b,
   ) =>
     smap(
-      arb_sum((
-        unsafe_arb_record((Proxy: Types.proxy<{"left": 'a}>), {"left": arb_a}),
-        unsafe_arb_record((Proxy: Types.proxy<{"right": 'b}>), {"right": arb_b}),
-      )),
       r => {
         let is_left: sum<({"left": 'a}, {"right": 'b})> => bool = %raw(`
             (r) => { return r.left !== undefined ? 1 : 0 }
@@ -204,6 +209,10 @@ module Arbitrary = {
         | Left(l') => "Left(" ++ (Js.Json.stringifyAny(l') |> Js.Option.getWithDefault("")) ++ ")"
         | Right(r') => "Right(" ++ (Js.Json.stringifyAny(r') |> Js.Option.getWithDefault("")) ++ ")"
         },
+      arb_sum((
+        unsafe_arb_record((Proxy: Types.proxy<{"left": 'a}>), {"left": arb_a}),
+        unsafe_arb_record((Proxy: Types.proxy<{"right": 'b}>), {"right": arb_b}),
+      )),
     )
 }
 
