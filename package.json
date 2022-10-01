@@ -9,9 +9,9 @@
   "homepage": "https://github.com/Risto-Stevcev/bs-jsverify",
   "bugs": "https://github.com/Risto-Stevcev/bs-jsverify/issues",
   "scripts": {
-    "clean": "bsb -clean-world",
-    "build": "bsb -make-world",
-    "watch": "bsb -make-world -w",
+    "clean": "rescript clean -with-deps",
+    "build": "rescript build",
+    "watch": "rescript build -w",
     "test": "./node_modules/.bin/mocha lib/js/test/Test*.js"
   },
   "keywords": [
@@ -21,8 +21,8 @@
   "author": "Risto Stevcev",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "bs-mocha": "^0.4.0",
-    "bs-platform": "^4.0.2"
+    "bs-mocha": "^1.0.0",
+    "rescript": "^10.0.0"
   },
   "dependencies": {
     "jsverify": "^0.8.3"
