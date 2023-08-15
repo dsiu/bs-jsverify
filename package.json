@@ -10,7 +10,7 @@
   "bugs": "https://github.com/Risto-Stevcev/bs-jsverify/issues",
   "scripts": {
     "clean": "rescript clean -with-deps",
-    "build": "rescript build",
+    "build": "rescript build -with-deps",
     "watch": "rescript build -w",
     "test": "./node_modules/.bin/mocha lib/js/test/Test*.js"
   },
@@ -21,10 +21,11 @@
   "author": "Risto Stevcev",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "bs-mocha": "^1.0.0",
-    "rescript": "^10.0.0"
+    "rescript": "next",
+    "rescript-mocha": "github:dsiu/rescript-mocha#rescript-v11"
   },
   "dependencies": {
+    "@rescript/core": "^0.5.0",
     "jsverify": "^0.8.3"
   }
 }

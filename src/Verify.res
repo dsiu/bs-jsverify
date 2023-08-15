@@ -86,8 +86,8 @@ module Arbitrary = {
 
   let arb_list: arbitrary<'a> => arbitrary<list<'a>> = a =>
     smap(
-      Array.to_list,
-      Array.of_list,
+      RescriptCore.List.fromArray,
+      RescriptCore.List.toArray,
       ~newShow=l => Js.Json.stringifyAny(Array.of_list(l)) |> Js.Option.getWithDefault(""),
       arb_array(a),
     )
@@ -177,8 +177,8 @@ module Arbitrary = {
 
   let arb_option: arbitrary<'a> => arbitrary<option<'a>> = arb =>
     smap(
-      Js.Null.toOption,
-      Js.Null.fromOption,
+      RescriptCore.Null.toOption,
+      RescriptCore.Null.fromOption,
       ~newShow=a =>
         switch a {
         | Some(a') => "Some(" ++ (Js.Json.stringifyAny(a') |> Js.Option.getWithDefault("")) ++ ")"
