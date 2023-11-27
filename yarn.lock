@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@rescript/core@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@rescript/core/-/core-0.5.0.tgz#3e83e75aaa60f42f4279e0d184358f2db5d40955"
-  integrity sha512-Keqnpi+8VqyhCk/3aMwar8hJbNy2IsINAAfIFeQC65IIegCR0QXFDBpQxfVcmbbtoHq6HnW4B3RLm/9GCUJQhQ==
+"@rescript/core@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@rescript/core/-/core-0.6.0.tgz#d2aae335c2a91dd68acce0ec11716861e08500d5"
+  integrity sha512-D4ykxSpbmxbQa99kCg6/DztwCNt1tV3t11BLSOvJPHNLSIuQxfAU3ddgRruaH9LQSKOrMUjxQS9z6RdG5iFPoA==
 
 "@ungap/promise-all-settled@1.1.2":
   version "1.1.2"
@@ -452,9 +452,9 @@ require-directory@^2.1.1:
     mocha "^9.2.2"
 
 rescript@next:
-  version "11.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/rescript/-/rescript-11.0.0-beta.4.tgz#07433d6d0d7118bec73954241d7a61a32c6e1dbf"
-  integrity sha512-MqTyh9LhDmA++2nemZF+amEO3kOg6a5tR43DuLVocILOAvR17UZcVcS6czGaW6+zOxvPOXVv2i/xiiWCJIDmvw==
+  version "11.0.0-rc.6"
+  resolved "https://registry.yarnpkg.com/rescript/-/rescript-11.0.0-rc.6.tgz#07ee555f6c6944a8d4c7186d1a848be471273f56"
+  integrity sha512-2nqdpQxLgQGNp0Rb8AFn5cM3kwRTd54zLvchqCsK3iLOe1CJwdVW5nEF7lsJbFTqihl8W6Va1y7SbFxY3FNxOQ==
 
 safe-buffer@^5.1.0:
   version "5.2.1"
