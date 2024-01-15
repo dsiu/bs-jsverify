@@ -21,7 +21,7 @@
   "author": "Risto Stevcev",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "rescript": "next",
+    "rescript": "v11.0.0",
     "rescript-mocha": "github:dsiu/rescript-mocha#rescript-v11"
   },
   "dependencies": {
