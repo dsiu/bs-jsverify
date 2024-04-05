@@ -451,10 +451,10 @@ require-directory@^2.1.1:
   dependencies:
     mocha "^9.2.2"
 
-rescript@next:
-  version "11.0.0-rc.6"
-  resolved "https://registry.yarnpkg.com/rescript/-/rescript-11.0.0-rc.6.tgz#07ee555f6c6944a8d4c7186d1a848be471273f56"
-  integrity sha512-2nqdpQxLgQGNp0Rb8AFn5cM3kwRTd54zLvchqCsK3iLOe1CJwdVW5nEF7lsJbFTqihl8W6Va1y7SbFxY3FNxOQ==
+rescript@v11.1.0-rc.7:
+  version "11.1.0-rc.7"
+  resolved "https://registry.yarnpkg.com/rescript/-/rescript-11.1.0-rc.7.tgz#07195124be8c48e8ff77d43ba07896f28be537ef"
+  integrity sha512-4MsOugrSaS9Sh4grCVwNhOJLv1KZ7gTtN5KsV0ctPvzGyCaco7Ftwqo4uVap7xXuzLjgALPQdYBdElBgTZRvaQ==
 
 safe-buffer@^5.1.0:
   version "5.2.1"
