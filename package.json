@@ -25,7 +25,7 @@
     "rescript-mocha": "github:dsiu/rescript-mocha#rescript-v11"
   },
   "dependencies": {
-    "@rescript/core": "^0.6.0",
+    "@rescript/core": "^1.2.0",
     "jsverify": "^0.8.3"
   }
 }
