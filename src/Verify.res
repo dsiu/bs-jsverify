@@ -88,7 +88,7 @@ module Arbitrary = {
     smap(
       RescriptCore.List.fromArray,
       RescriptCore.List.toArray,
-      ~newShow=l => Js.Json.stringifyAny(Array.of_list(l)) |> Js.Option.getWithDefault(""),
+      ~newShow=l => Js.Json.stringifyAny(RescriptCore.List.toArray(l)) |> Js.Option.getWithDefault(""),
       arb_array(a),
     )
 
