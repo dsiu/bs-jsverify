@@ -200,7 +200,7 @@ __metadata:
     "@rescript/core": "npm:^1.4.0"
     jsverify: "npm:^0.8.4"
     rescript: "npm:v12.0.0-alpha.4"
-    rescript-mocha: "github:dsiu/rescript-mocha#rescript-v11"
+    rescript-mocha: "github:dsiu/rescript-mocha#rescript-v12"
   languageName: unknown
   linkType: soft
 
@@ -1180,12 +1180,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rescript-mocha@github:dsiu/rescript-mocha#rescript-v11":
+"rescript-mocha@github:dsiu/rescript-mocha#rescript-v12":
   version: 0.9.0
-  resolution: "rescript-mocha@https://github.com/dsiu/rescript-mocha.git#commit=ae3a161df4d2de77c180b452d15a604c8e30c623"
+  resolution: "rescript-mocha@https://github.com/dsiu/rescript-mocha.git#commit=efcda1f4e01b18a9250dd05644f3d4ae52af37be"
   dependencies:
     mocha: "npm:^9.2.2"
-  checksum: 10c0/5316ef97ddb88cb2cf89bb22aba2f8bc940f846fdc551e52514532554fdaf5c73e9d574bdef16d081a41ef01c038f18ba7b820fe977328bcf14a775066769ecd
+  checksum: 10c0/9e5a329b7fb372d307458ec5feb6a4c04f123bb041c9b3927cbf8aeb3829813a851e9d6bf843516e9cc802b17d4032530940d7693e94ca3cb8e51320851489e6
   languageName: node
   linkType: hard
 
