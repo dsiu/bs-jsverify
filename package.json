@@ -22,7 +22,7 @@
   "license": "BSD-3-Clause",
   "devDependencies": {
     "rescript": "v12.0.0-alpha.4",
-    "rescript-mocha": "github:dsiu/rescript-mocha#rescript-v11"
+    "rescript-mocha": "github:dsiu/rescript-mocha#rescript-v12"
   },
   "dependencies": {
     "@rescript/core": "^1.4.0",
