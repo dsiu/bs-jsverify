@@ -31,7 +31,7 @@ describe("JsVerify", () => {
     }
   )
 
-  property1("sum of nats is >= 0", arb_array(arb_nat), a => Array.fold_left(\"+", 0, a) >= 0)
+  property1("sum of nats is >= 0", arb_array(arb_nat), a => a->RescriptCore.Array.reduce(0, \"+") >= 0)
 
   let arb_record_c = unsafe_arb_record(
     (Proxy: Types.proxy<{"d": bool, "e": Js.null<int>}>),
