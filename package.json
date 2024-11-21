@@ -21,11 +21,11 @@
   "author": "Risto Stevcev",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "rescript": "v12.0.0-alpha.4",
+    "rescript": "v12.0.0-alpha.5",
     "rescript-mocha": "github:dsiu/rescript-mocha#rescript-v12"
   },
   "dependencies": {
-    "@rescript/core": "^1.4.0",
+    "@rescript/core": "^1.6.1",
     "jsverify": "^0.8.4"
   },
   "packageManager": "yarn@4.5.1"

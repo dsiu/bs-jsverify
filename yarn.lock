@@ -48,7 +48,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rescript/core@npm:^1.4.0":
+"@rescript/core@npm:^1.6.1":
   version: 1.6.1
   resolution: "@rescript/core@npm:1.6.1"
   peerDependencies:
@@ -197,9 +197,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "bs-jsverify@workspace:."
   dependencies:
-    "@rescript/core": "npm:^1.4.0"
+    "@rescript/core": "npm:^1.6.1"
     jsverify: "npm:^0.8.4"
-    rescript: "npm:v12.0.0-alpha.4"
+    rescript: "npm:v12.0.0-alpha.5"
     rescript-mocha: "github:dsiu/rescript-mocha#rescript-v12"
   languageName: unknown
   linkType: soft
@@ -309,13 +309,13 @@ __metadata:
   linkType: hard
 
 "cross-spawn@npm:^7.0.0":
-  version: 7.0.3
-  resolution: "cross-spawn@npm:7.0.3"
+  version: 7.0.6
+  resolution: "cross-spawn@npm:7.0.6"
   dependencies:
     path-key: "npm:^3.1.0"
     shebang-command: "npm:^2.0.0"
     which: "npm:^2.0.1"
-  checksum: 10c0/5738c312387081c98d69c98e105b6327b069197f864a60593245d64c8089c8a0a744e16349281210d56835bb9274130d825a78b2ad6853ca13cfbeffc0c31750
+  checksum: 10c0/053ea8b2135caff68a9e81470e845613e374e7309a47731e81639de3eaeb90c3d01af0e0b44d2ab9d50b43467223b88567dfeb3262db942dc063b9976718ffc1
   languageName: node
   linkType: hard
 
@@ -1182,22 +1182,23 @@ __metadata:
 
 "rescript-mocha@github:dsiu/rescript-mocha#rescript-v12":
   version: 0.9.0
-  resolution: "rescript-mocha@https://github.com/dsiu/rescript-mocha.git#commit=efcda1f4e01b18a9250dd05644f3d4ae52af37be"
+  resolution: "rescript-mocha@https://github.com/dsiu/rescript-mocha.git#commit=5be499c3451fceeeb13d731fac8bddde1bb6621b"
   dependencies:
     mocha: "npm:^9.2.2"
-  checksum: 10c0/9e5a329b7fb372d307458ec5feb6a4c04f123bb041c9b3927cbf8aeb3829813a851e9d6bf843516e9cc802b17d4032530940d7693e94ca3cb8e51320851489e6
+  checksum: 10c0/c754c12e0a2d180f87de617aea44c6d85cef01bd85b33213d286cbb9c0c5393af62312bc51cb2720b671f48cfb5178a4ddeaabbc3b8b3a8b192a85f12f0ff298
   languageName: node
   linkType: hard
 
-"rescript@npm:v12.0.0-alpha.4":
-  version: 12.0.0-alpha.4
-  resolution: "rescript@npm:12.0.0-alpha.4"
+"rescript@npm:v12.0.0-alpha.5":
+  version: 12.0.0-alpha.5
+  resolution: "rescript@npm:12.0.0-alpha.5"
   bin:
     bsc: cli/bsc
     bstracing: lib/bstracing
     rescript: cli/rescript
+    rescript-tools: cli/rescript-tools
     rewatch: cli/rewatch
-  checksum: 10c0/d5e36b0de692a22da53448505eb507a5702f38e5c4d8eeda5215a1e606458b8e10d06b19c0de2462e7030cb78dcd7db8e71f7c0addcd83eb9a49d090fec27811
+  checksum: 10c0/49977ce3bf4f016e8f00fa5b769d0fff100b8a425fb2bd1a8e4cb3fc35dfd2dd7928e06e514ea53f0f44a8c1e61bf26901280719568deee96a88c964ba74bc5b
   languageName: node
   linkType: hard
 
@@ -1396,9 +1397,9 @@ __metadata:
   linkType: hard
 
 "trampa@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "trampa@npm:1.0.0"
-  checksum: 10c0/a1a0e08181a4150df7f29c06233fb7c5fde745ea96f8fba1b665458d86ab23b1204fab629a6e1f8961fcca5c8380ba110a24d638ab6e752ceaa476ec05401d28
+  version: 1.0.1
+  resolution: "trampa@npm:1.0.1"
+  checksum: 10c0/ffabb3d51a15c5fc739332385c1af92dde4216874d5de7754a71ffa636f1b11dc502232e173d7fab518b4dd467ae44a9388368dfb6c50bc0b49801f79137d9ba
   languageName: node
   linkType: hard
 
