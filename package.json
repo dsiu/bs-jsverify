@@ -12,7 +12,7 @@
     "clean": "rescript clean -with-deps",
     "build": "rescript build -with-deps",
     "watch": "rescript build -w",
-    "test": "./node_modules/.bin/mocha lib/js/test/Test*.js"
+    "test": "./node_modules/.bin/mocha lib/es6/test/Test*.mjs"
   },
   "keywords": [
     "BuckleScript",

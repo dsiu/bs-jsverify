@@ -28,7 +28,7 @@ module Arbitrary = {
       }
   }
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external sampler: (~arb: arbitrary<'a>, ~genSize: int=?, unit) => 'a = "sampler"
 
   @send
@@ -37,13 +37,14 @@ module Arbitrary = {
 
   let smap = (aTob, bToa, ~newShow, a) => smap_(a, aTob, bToa, ~newShow)
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external bless: {.."generator": int => 'a} => arbitrary<'a> = "bless"
 
   /* * * * * * * * * *
    * For primitives  *
    * * * * * * * * * */
-  @module("jsverify") external arb_js_bool: arbitrary<bool> = "bool"
+  @module("jsverify") @scope("default")
+  external arb_js_bool: arbitrary<bool> = "bool"
   //  @scope("Jsverify") @val external arb_js_bool: arbitrary<bool> = "bool"
 
   let arb_bool: arbitrary<bool> = smap(
@@ -53,35 +54,35 @@ module Arbitrary = {
     arb_js_bool,
   )
 
-  @module("jsverify") external arb_nat: arbitrary<int> = "nat"
+  @module("jsverify") @scope("default") external arb_nat: arbitrary<int> = "nat"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_int: (int, int) => arbitrary<int> = "integer"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_float: (float, float) => arbitrary<float> = "number"
 
-  @module("jsverify") external arb_character: arbitrary<string> = "char"
-  @module("jsverify")
+  @module("jsverify") @scope("default") external arb_character: arbitrary<string> = "char"
+  @module("jsverify") @scope("default")
   external arb_ascii_character: arbitrary<string> = "asciichar"
 
-  @module("jsverify") external arb_string: arbitrary<string> = "string"
-  @module("jsverify")
+  @module("jsverify") @scope("default") external arb_string: arbitrary<string> = "string"
+  @module("jsverify") @scope("default")
   external arb_not_empty_string: arbitrary<string> = "nestring"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_ascii_string: arbitrary<string> = "asciistring"
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_not_empty_ascii_string: arbitrary<string> = "asciinestring"
 
-  @module("jsverify") external arb_unit: arbitrary<unit> = "unit"
+  @module("jsverify") @scope("default") external arb_unit: arbitrary<unit> = "unit"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_array: arbitrary<'a> => arbitrary<array<'a>> = "array"
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_not_empty_array: arbitrary<'a> => arbitrary<array<'a>> = "nearray"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_date: arbitrary<Js.Date.t> = "datetime"
 
   let arb_list: arbitrary<'a> => arbitrary<list<'a>> = a =>
@@ -95,54 +96,54 @@ module Arbitrary = {
   /* * * * * * * *
    * For objects *
    * * * * * * * */
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_object: arbitrary<Js.t<'a>> = "object"
 
-  @module("jsverify") external arb_json: arbitrary<Js.Json.t> = "json"
+  @module("jsverify") @scope("default") external arb_json: arbitrary<Js.Json.t> = "json"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_dict: arbitrary<'a> => arbitrary<Js.Dict.t<'a>> = "dict"
 
   /* * * * * *
    * Helpers *
    * * * * * */
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_constant: 'a => arbitrary<'a> = "constant"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external non_shrink: arbitrary<'a> => arbitrary<'a> = "nonshrink"
 
   /* * * * * * * *
    * Combinators *
    * * * * * * * */
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_small: arbitrary<'a> => arbitrary<'a> = "small"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_such_that: (arbitrary<'a>, 'a => bool) => arbitrary<'a> = "suchthat"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_elements: array<'a> => arbitrary<'a> = "elements"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_one_of: array<arbitrary<'a>> => arbitrary<'a> = "oneof"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_fn: arbitrary<'a> => arbitrary<'b => 'a> = "asciinestring"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_tuple: ((arbitrary<'a>, arbitrary<'b>)) => arbitrary<('a, 'b)> = "tuple"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_tuple': ((arbitrary<'a>, arbitrary<'b>, arbitrary<'c>)) => arbitrary<('a, 'b, 'c)> =
     "tuple"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_tuple'': (
     (arbitrary<'a>, arbitrary<'b>, arbitrary<'c>, arbitrary<'d>)
   ) => arbitrary<('a, 'b, 'c, 'd)> = "tuple"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external unsafe_arb_record: (
     @ignore Types.proxy<Js.t<'a>> /* set the record type as key: value */,
     Js.t<'b>,
@@ -153,13 +154,13 @@ module Arbitrary = {
    * This is represented as an abstract type `sum<'a>`. You'll need to use reflection in
    * order to get the value out (see the `Js.Types` module)
    */
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_sum: ((arbitrary<'a>, arbitrary<'b>)) => arbitrary<sum<('a, 'b)>> = "oneof"
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_sum': ((arbitrary<'a>, arbitrary<'b>, arbitrary<'c>)) => arbitrary<
     sum<('a, 'b, 'c)>,
   > = "oneof"
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external arb_sum'': ((arbitrary<'a>, arbitrary<'b>, arbitrary<'c>, arbitrary<'d>)) => arbitrary<
     sum<('a, 'b, 'c, 'd)>,
   > = "oneof"
@@ -286,33 +287,33 @@ module Property = {
     | _ => None
     }
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external check: (~prop: property<'a>, ~options: check_options=?, unit) => abs_result<'a> = "check"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external check': (
     ~prop: async_property<'a>,
     ~options: check_options=?,
     unit,
   ) => Js.Promise.t<abs_result<'a>> = "check"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external assert': (~prop: property<'a>, ~options: check_options=?, unit) => unit = "assert"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external assert'': (~prop: async_property<'a>, ~options: check_options=?, unit) => unit = "assert"
 
   /* * * * * * * * * * * * * * *
    * `forall` with bool  *
    * * * * * * * * * * * * * * */
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external forall1': (arbitrary<'a>, 'a => bool) => property<'a> = "forall"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external forall2': (arbitrary<'a>, arbitrary<'b>, ('a, 'b) => bool) => property<sum<('a, 'b)>> =
     "forall"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external forall3': (
     arbitrary<'a>,
     arbitrary<'b>,
@@ -320,7 +321,7 @@ module Property = {
     ('a, 'b, 'c) => bool,
   ) => property<sum<('a, 'b, 'c)>> = "forall"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external forall4': (
     arbitrary<'a>,
     arbitrary<'b>,
@@ -329,7 +330,7 @@ module Property = {
     ('a, 'b, 'c, 'd) => bool,
   ) => property<sum<('a, 'b, 'c, 'd)>> = "forall"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external forall5': (
     arbitrary<'a>,
     arbitrary<'b>,
@@ -342,17 +343,17 @@ module Property = {
   /* * * * * * * * * * * * * * * * * * *
    * `forall` with bool (async)  *
    * * * * * * * * * * * * * * * * * * */
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external async_forall1: (arbitrary<'a>, 'a => Js.Promise.t<bool>) => async_property<'a> = "forall"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external async_forall2: (
     arbitrary<'a>,
     arbitrary<'b>,
     ('a, 'b) => Js.Promise.t<bool>,
   ) => async_property<sum<('a, 'b)>> = "forall"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external async_forall3: (
     arbitrary<'a>,
     arbitrary<'b>,
@@ -360,7 +361,7 @@ module Property = {
     ('a, 'b, 'c) => Js.Promise.t<bool>,
   ) => async_property<sum<('a, 'b, 'c)>> = "forall"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external async_forall4: (
     arbitrary<'a>,
     arbitrary<'b>,
@@ -369,7 +370,7 @@ module Property = {
     ('a, 'b, 'c, 'd) => Js.Promise.t<bool>,
   ) => async_property<sum<('a, 'b, 'c, 'd)>> = "forall"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external async_forall5: (
     arbitrary<'a>,
     arbitrary<'b>,
@@ -396,16 +397,16 @@ module Property = {
   /* * * * * * * * * * * * * * * *
    * `property` with bool  *
    * * * * * * * * * * * * * * * */
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external property1': (string, arbitrary<'a>, 'a => bool) => unit = "property"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external async_property1': (string, arbitrary<'a>, 'a => Js.Promise.t<bool>) => unit = "property"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external property2': (string, arbitrary<'a>, arbitrary<'b>, ('a, 'b) => bool) => unit = "property"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external async_property2': (
     string,
     arbitrary<'a>,
@@ -413,7 +414,7 @@ module Property = {
     ('a, 'b) => Js.Promise.t<bool>,
   ) => unit = "property"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external property3': (
     string,
     arbitrary<'a>,
@@ -422,7 +423,7 @@ module Property = {
     ('a, 'b, 'c) => bool,
   ) => unit = "property"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external async_property3': (
     string,
     arbitrary<'a>,
@@ -431,7 +432,7 @@ module Property = {
     ('a, 'b, 'c) => Js.Promise.t<bool>,
   ) => unit = "property"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external property4': (
     string,
     arbitrary<'a>,
@@ -441,7 +442,7 @@ module Property = {
     ('a, 'b, 'c, 'd) => bool,
   ) => unit = "property"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external async_property4': (
     string,
     arbitrary<'a>,
@@ -451,7 +452,7 @@ module Property = {
     ('a, 'b, 'c, 'd) => Js.Promise.t<bool>,
   ) => unit = "property"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external property5': (
     string,
     arbitrary<'a>,
@@ -462,7 +463,7 @@ module Property = {
     ('a, 'b, 'c, 'd, 'e) => bool,
   ) => unit = "property"
 
-  @module("jsverify")
+  @module("jsverify") @scope("default")
   external async_property5': (
     string,
     arbitrary<'a>,

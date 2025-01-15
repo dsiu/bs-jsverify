@@ -11,9 +11,9 @@
     "type": "dev"
   }],
   "package-specs": {
-    "module": "commonjs",
+    "module": "esmodule",
     "in-source": false
   },
-  "suffix": ".bs.js",
+  "suffix": ".mjs",
   "bs-dev-dependencies": ["rescript-mocha"]
 }
