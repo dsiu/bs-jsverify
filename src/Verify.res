@@ -255,7 +255,7 @@ module Property = {
     "counterexample": 'a,
     "tests": int,
     "shrinks": int,
-    "exc": Js.nullable<Js.Exn.t>,
+    "exc": Js.nullable<JsExn.t>,
     "rngState": string,
   }
 
