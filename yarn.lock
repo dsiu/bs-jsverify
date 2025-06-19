@@ -57,37 +57,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rescript/darwin-arm64@npm:12.0.0-alpha.13":
-  version: 12.0.0-alpha.13
-  resolution: "@rescript/darwin-arm64@npm:12.0.0-alpha.13"
+"@rescript/darwin-arm64@npm:12.0.0-alpha.14":
+  version: 12.0.0-alpha.14
+  resolution: "@rescript/darwin-arm64@npm:12.0.0-alpha.14"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@rescript/darwin-x64@npm:12.0.0-alpha.13":
-  version: 12.0.0-alpha.13
-  resolution: "@rescript/darwin-x64@npm:12.0.0-alpha.13"
+"@rescript/darwin-x64@npm:12.0.0-alpha.14":
+  version: 12.0.0-alpha.14
+  resolution: "@rescript/darwin-x64@npm:12.0.0-alpha.14"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@rescript/linux-arm64@npm:12.0.0-alpha.13":
-  version: 12.0.0-alpha.13
-  resolution: "@rescript/linux-arm64@npm:12.0.0-alpha.13"
+"@rescript/linux-arm64@npm:12.0.0-alpha.14":
+  version: 12.0.0-alpha.14
+  resolution: "@rescript/linux-arm64@npm:12.0.0-alpha.14"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@rescript/linux-x64@npm:12.0.0-alpha.13":
-  version: 12.0.0-alpha.13
-  resolution: "@rescript/linux-x64@npm:12.0.0-alpha.13"
+"@rescript/linux-x64@npm:12.0.0-alpha.14":
+  version: 12.0.0-alpha.14
+  resolution: "@rescript/linux-x64@npm:12.0.0-alpha.14"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@rescript/win32-x64@npm:12.0.0-alpha.13":
-  version: 12.0.0-alpha.13
-  resolution: "@rescript/win32-x64@npm:12.0.0-alpha.13"
+"@rescript/win32-x64@npm:12.0.0-alpha.14":
+  version: 12.0.0-alpha.14
+  resolution: "@rescript/win32-x64@npm:12.0.0-alpha.14"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -182,21 +182,21 @@ __metadata:
   linkType: hard
 
 "brace-expansion@npm:^1.1.7":
-  version: 1.1.11
-  resolution: "brace-expansion@npm:1.1.11"
+  version: 1.1.12
+  resolution: "brace-expansion@npm:1.1.12"
   dependencies:
     balanced-match: "npm:^1.0.0"
     concat-map: "npm:0.0.1"
-  checksum: 10c0/695a56cd058096a7cb71fb09d9d6a7070113c7be516699ed361317aca2ec169f618e28b8af352e02ab4233fb54eb0168460a40dc320bab0034b36ab59aaad668
+  checksum: 10c0/975fecac2bb7758c062c20d0b3b6288c7cc895219ee25f0a64a9de662dbac981ff0b6e89909c3897c1f84fa353113a721923afdec5f8b2350255b097f12b1f73
   languageName: node
   linkType: hard
 
 "brace-expansion@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "brace-expansion@npm:2.0.1"
+  version: 2.0.2
+  resolution: "brace-expansion@npm:2.0.2"
   dependencies:
     balanced-match: "npm:^1.0.0"
-  checksum: 10c0/b358f2fe060e2d7a87aa015979ecea07f3c37d4018f8d6deb5bd4c229ad3a0384fe6029bb76cd8be63c81e516ee52d1a0673edbe2023d53a5191732ae3c3e49f
+  checksum: 10c0/6d117a4c793488af86b83172deb6af143e94c17bc53b0b3cec259733923b4ca84679d506ac261f4ba3c7ed37c46018e2ff442f9ce453af8643ecd64f4a54e6cf
   languageName: node
   linkType: hard
 
@@ -221,7 +221,7 @@ __metadata:
   resolution: "bs-jsverify@workspace:."
   dependencies:
     jsverify: "npm:^0.8.4"
-    rescript: "npm:^12.0.0-alpha.13"
+    rescript: "npm:^12.0.0-alpha.14"
     rescript-mocha: "github:dsiu/rescript-mocha#rescript-v12"
   languageName: unknown
   linkType: soft
@@ -438,14 +438,14 @@ __metadata:
   linkType: hard
 
 "fdir@npm:^6.4.4":
-  version: 6.4.4
-  resolution: "fdir@npm:6.4.4"
+  version: 6.4.6
+  resolution: "fdir@npm:6.4.6"
   peerDependencies:
     picomatch: ^3 || ^4
   peerDependenciesMeta:
     picomatch:
       optional: true
-  checksum: 10c0/6ccc33be16945ee7bc841e1b4178c0b4cf18d3804894cb482aa514651c962a162f96da7ffc6ebfaf0df311689fb70091b04dd6caffe28d56b9ebdc0e7ccadfdd
+  checksum: 10c0/45b559cff889934ebb8bc498351e5acba40750ada7e7d6bde197768d2fa67c149be8ae7f8ff34d03f4e1eb20f2764116e56440aaa2f6689e9a4aa7ef06acafe9
   languageName: node
   linkType: hard
 
@@ -1182,22 +1182,22 @@ __metadata:
 
 "rescript-mocha@github:dsiu/rescript-mocha#rescript-v12":
   version: 0.9.0
-  resolution: "rescript-mocha@https://github.com/dsiu/rescript-mocha.git#commit=463d450b4eceed539072f410ba0cd31893baafa1"
+  resolution: "rescript-mocha@https://github.com/dsiu/rescript-mocha.git#commit=d20139cdd69cb91a13c2a7af529cc3b5f8eb3ec6"
   dependencies:
     mocha: "npm:^9.2.2"
-  checksum: 10c0/84bb6e8951cd17bf07df5d65dbe70c712d0b7a34af4f33f5b3d167795e970531459937ad6029cbf5efd0b59e93978af06c4ea3db9e53a9d2920b58142beb9227
+  checksum: 10c0/2504efbbe1d6dc2b492055bba18b5b55f976b73d07492e4022dcbb14ce61309ae3335be20e5304acc1ba7811909bd82b6c33fe3666a46085eeae2b94cb7d16d3
   languageName: node
   linkType: hard
 
-"rescript@npm:^12.0.0-alpha.13":
-  version: 12.0.0-alpha.13
-  resolution: "rescript@npm:12.0.0-alpha.13"
+"rescript@npm:^12.0.0-alpha.14":
+  version: 12.0.0-alpha.14
+  resolution: "rescript@npm:12.0.0-alpha.14"
   dependencies:
-    "@rescript/darwin-arm64": "npm:12.0.0-alpha.13"
-    "@rescript/darwin-x64": "npm:12.0.0-alpha.13"
-    "@rescript/linux-arm64": "npm:12.0.0-alpha.13"
-    "@rescript/linux-x64": "npm:12.0.0-alpha.13"
-    "@rescript/win32-x64": "npm:12.0.0-alpha.13"
+    "@rescript/darwin-arm64": "npm:12.0.0-alpha.14"
+    "@rescript/darwin-x64": "npm:12.0.0-alpha.14"
+    "@rescript/linux-arm64": "npm:12.0.0-alpha.14"
+    "@rescript/linux-x64": "npm:12.0.0-alpha.14"
+    "@rescript/win32-x64": "npm:12.0.0-alpha.14"
   dependenciesMeta:
     "@rescript/darwin-arm64":
       optional: true
@@ -1215,7 +1215,7 @@ __metadata:
     rescript: cli/rescript.js
     rescript-tools: cli/rescript-tools.js
     rewatch: cli/rewatch.js
-  checksum: 10c0/97ad8615b1a1cbace61e050b65a10bbe280c77b4fe693b99aee7d3c6bb0b2ebd284db16a7aec3d65179267dc610a9737fdf74197f6322b1281113fd588fe1b32
+  checksum: 10c0/dfb4bfd0399f70bf402da6dd94d848c0e7d2c499b5e2a827e975fa3dffbbbd0957ce727d21b1f13d6c52e86b71caa94ea05ae9ad7a41b0f1a53995b0e71e8466
   languageName: node
   linkType: hard
 
@@ -1300,12 +1300,12 @@ __metadata:
   linkType: hard
 
 "socks@npm:^2.8.3":
-  version: 2.8.4
-  resolution: "socks@npm:2.8.4"
+  version: 2.8.5
+  resolution: "socks@npm:2.8.5"
   dependencies:
     ip-address: "npm:^9.0.5"
     smart-buffer: "npm:^4.2.0"
-  checksum: 10c0/00c3271e233ccf1fb83a3dd2060b94cc37817e0f797a93c560b9a7a86c4a0ec2961fb31263bdd24a3c28945e24868b5f063cd98744171d9e942c513454b50ae5
+  checksum: 10c0/e427d0eb0451cfd04e20b9156ea8c0e9b5e38a8d70f21e55c30fbe4214eda37cfc25d782c63f9adc5fbdad6d062a0f127ef2cefc9a44b6fee2b9ea5d1ed10827
   languageName: node
   linkType: hard
 
@@ -1405,12 +1405,12 @@ __metadata:
   linkType: hard
 
 "tinyglobby@npm:^0.2.12":
-  version: 0.2.13
-  resolution: "tinyglobby@npm:0.2.13"
+  version: 0.2.14
+  resolution: "tinyglobby@npm:0.2.14"
   dependencies:
     fdir: "npm:^6.4.4"
     picomatch: "npm:^4.0.2"
-  checksum: 10c0/ef07dfaa7b26936601d3f6d999f7928a4d1c6234c5eb36896bb88681947c0d459b7ebe797022400e555fe4b894db06e922b95d0ce60cb05fd827a0a66326b18c
+  checksum: 10c0/f789ed6c924287a9b7d3612056ed0cda67306cd2c80c249fd280cf1504742b12583a2089b61f4abbd24605f390809017240e250241f09938054c9b363e51c0a6
   languageName: node
   linkType: hard
 

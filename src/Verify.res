@@ -89,7 +89,7 @@ module Arbitrary = {
     smap(
       List.fromArray,
       List.toArray,
-      ~newShow=l => Js.Json.stringifyAny(List.toArray(l)) |> Js.Option.getWithDefault(""),
+      ~newShow=l => Js.Json.stringifyAny(List.toArray(l)) -> Js.Option.getWithDefault("", _),
       arb_array(a),
     )
 
@@ -182,7 +182,7 @@ module Arbitrary = {
       Null.fromOption,
       ~newShow=a =>
         switch a {
-        | Some(a') => "Some(" ++ (Js.Json.stringifyAny(a') |> Js.Option.getWithDefault("")) ++ ")"
+        | Some(a') => "Some(" ++ (Js.Json.stringifyAny(a') -> Js.Option.getWithDefault("", _)) ++ ")"
         | None => "None"
         },
       arb_null(arb),
@@ -207,8 +207,8 @@ module Arbitrary = {
         },
       ~newShow=e =>
         switch e {
-        | Left(l') => "Left(" ++ (Js.Json.stringifyAny(l') |> Js.Option.getWithDefault("")) ++ ")"
-        | Right(r') => "Right(" ++ (Js.Json.stringifyAny(r') |> Js.Option.getWithDefault("")) ++ ")"
+        | Left(l') => "Left(" ++ (Js.Json.stringifyAny(l') -> Js.Option.getWithDefault("", _)) ++ ")"
+        | Right(r') => "Right(" ++ (Js.Json.stringifyAny(r') -> Js.Option.getWithDefault("", _)) ++ ")"
         },
       arb_sum((
         unsafe_arb_record((Proxy: Types.proxy<{"left": 'a}>), {"left": arb_a}),
@@ -274,10 +274,10 @@ module Property = {
     unit,
   ) => check_options = (~tests=?, ~size=?, ~quiet=?, ~rngState=?, _) =>
     {
-      "tests": tests |> Js.Nullable.fromOption,
-      "size": size |> Js.Nullable.fromOption,
-      "quiet": quiet |> Js.Nullable.fromOption,
-      "rngState": rngState |> Js.Nullable.fromOption,
+      "tests": tests -> Js.Nullable.fromOption,
+      "size": size -> Js.Nullable.fromOption,
+      "quiet": quiet -> Js.Nullable.fromOption,
+      "rngState": rngState -> Js.Nullable.fromOption,
     }
 
   /* Convert the abstract result type coming from the API untagged to a more usable form */
@@ -480,20 +480,20 @@ module Property = {
   let property1 = (s, a1, fn) => property1'(s, a1, a => fn(a))
 
   let async_property1 = (s, a1, fn) =>
-    async_property1'(s, a1, a => fn(a) |> Js.Promise.then_(x => x |> Js.Promise.resolve))
+    async_property1'(s, a1, a => fn(a) -> Js.Promise.then_(x => x -> Js.Promise.resolve, _))
 
   let property2 = (s, a1, a2, fn) => property2'(s, a1, a2, (a, b) => fn(a, b))
 
   let async_property2 = (s, a1, a2, fn) =>
     async_property2'(s, a1, a2, (a, b) =>
-      fn(a, b) |> Js.Promise.then_(x => x |> Js.Promise.resolve)
+      fn(a, b) -> Js.Promise.then_(x => x -> Js.Promise.resolve, _)
     )
 
   let property3 = (s, a1, a2, a3, fn) => property3'(s, a1, a2, a3, (a, b, c) => fn(a, b, c))
 
   let async_property3 = (s, a1, a2, a3, fn) =>
     async_property3'(s, a1, a2, a3, (a, b, c) =>
-      fn(a, b, c) |> Js.Promise.then_(x => x |> Js.Promise.resolve)
+      fn(a, b, c) -> Js.Promise.then_(x => x -> Js.Promise.resolve, _)
     )
 
   let property4 = (s, a1, a2, a3, a4, fn) =>
@@ -501,7 +501,7 @@ module Property = {
 
   let async_property4 = (s, a1, a2, a3, a4, fn) =>
     async_property4'(s, a1, a2, a3, a4, (a, b, c, d) =>
-      fn(a, b, c, d) |> Js.Promise.then_(x => x |> Js.Promise.resolve)
+      fn(a, b, c, d) -> Js.Promise.then_(x => x -> Js.Promise.resolve, _)
     )
 
   let property5 = (s, a1, a2, a3, a4, a5, fn) =>
@@ -509,6 +509,6 @@ module Property = {
 
   let async_property5 = (s, a1, a2, a3, a4, a5, fn) =>
     async_property5'(s, a1, a2, a3, a4, a5, (a, b, c, d, e) =>
-      fn(a, b, c, d, e) |> Js.Promise.then_(x => x |> Js.Promise.resolve)
+      fn(a, b, c, d, e) -> Js.Promise.then_(x => x -> Js.Promise.resolve, _)
     )
 }
