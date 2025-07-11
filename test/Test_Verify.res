@@ -1,5 +1,4 @@
-open RescriptMocha
-open Mocha
+open RescriptMocha.Mocha
 open Verify.Arbitrary
 open Verify.Property
 
