@@ -15,5 +15,5 @@
     "in-source": false
   },
   "suffix": ".mjs",
-  "bs-dependencies": ["rescript-mocha"]
+  "bs-dev-dependencies": ["rescript-mocha"]
 }
