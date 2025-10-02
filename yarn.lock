@@ -57,44 +57,44 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rescript/darwin-arm64@npm:12.0.0-beta.12":
-  version: 12.0.0-beta.12
-  resolution: "@rescript/darwin-arm64@npm:12.0.0-beta.12"
+"@rescript/darwin-arm64@npm:12.0.0-beta.13":
+  version: 12.0.0-beta.13
+  resolution: "@rescript/darwin-arm64@npm:12.0.0-beta.13"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@rescript/darwin-x64@npm:12.0.0-beta.12":
-  version: 12.0.0-beta.12
-  resolution: "@rescript/darwin-x64@npm:12.0.0-beta.12"
+"@rescript/darwin-x64@npm:12.0.0-beta.13":
+  version: 12.0.0-beta.13
+  resolution: "@rescript/darwin-x64@npm:12.0.0-beta.13"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@rescript/linux-arm64@npm:12.0.0-beta.12":
-  version: 12.0.0-beta.12
-  resolution: "@rescript/linux-arm64@npm:12.0.0-beta.12"
+"@rescript/linux-arm64@npm:12.0.0-beta.13":
+  version: 12.0.0-beta.13
+  resolution: "@rescript/linux-arm64@npm:12.0.0-beta.13"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@rescript/linux-x64@npm:12.0.0-beta.12":
-  version: 12.0.0-beta.12
-  resolution: "@rescript/linux-x64@npm:12.0.0-beta.12"
+"@rescript/linux-x64@npm:12.0.0-beta.13":
+  version: 12.0.0-beta.13
+  resolution: "@rescript/linux-x64@npm:12.0.0-beta.13"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@rescript/runtime@npm:12.0.0-beta.12":
-  version: 12.0.0-beta.12
-  resolution: "@rescript/runtime@npm:12.0.0-beta.12"
-  checksum: 10c0/098275f108a7f212d4cbffbe75f55d114ee9cdeb151e204ac7118c612e2dcc341e824afa791ae83a0aa542bdefa02397e4ebceb0655cf911a84d3a9462c57b9b
+"@rescript/runtime@npm:12.0.0-beta.13":
+  version: 12.0.0-beta.13
+  resolution: "@rescript/runtime@npm:12.0.0-beta.13"
+  checksum: 10c0/41d354e592509cc1fc2ea45b3876440607e146f90176ca88185229ed7ff9df2296909ad5ce3602c88e9e21b07c386ada992cbe5b72749ca17215a4e95281852d
   languageName: node
   linkType: hard
 
-"@rescript/win32-x64@npm:12.0.0-beta.12":
-  version: 12.0.0-beta.12
-  resolution: "@rescript/win32-x64@npm:12.0.0-beta.12"
+"@rescript/win32-x64@npm:12.0.0-beta.13":
+  version: 12.0.0-beta.13
+  resolution: "@rescript/win32-x64@npm:12.0.0-beta.13"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -228,7 +228,7 @@ __metadata:
   resolution: "bs-jsverify@workspace:."
   dependencies:
     jsverify: "npm:^0.8.4"
-    rescript: "npm:^12.0.0-beta.12"
+    rescript: "npm:^12.0.0-beta.13"
     rescript-mocha: "github:dsiu/rescript-mocha#rescript-v12"
   languageName: unknown
   linkType: soft
@@ -921,21 +921,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minizlib@npm:^3.0.1":
-  version: 3.0.2
-  resolution: "minizlib@npm:3.0.2"
+"minizlib@npm:^3.0.1, minizlib@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "minizlib@npm:3.1.0"
   dependencies:
     minipass: "npm:^7.1.2"
-  checksum: 10c0/9f3bd35e41d40d02469cb30470c55ccc21cae0db40e08d1d0b1dff01cc8cc89a6f78e9c5d2b7c844e485ec0a8abc2238111213fdc5b2038e6d1012eacf316f78
-  languageName: node
-  linkType: hard
-
-"mkdirp@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "mkdirp@npm:3.0.1"
-  bin:
-    mkdirp: dist/cjs/src/bin.js
-  checksum: 10c0/9f2b975e9246351f5e3a40dcfac99fcd0baa31fbfab615fe059fb11e51f10e4803c63de1f384c54d656e4db31d000e4767e9ef076a22e12a641357602e31d57d
+  checksum: 10c0/5aad75ab0090b8266069c9aabe582c021ae53eb33c6c691054a13a45db3b4f91a7fb1bd79151e6b4e9e9a86727b522527c0a06ec7d45206b745d54cd3097bcec
   languageName: node
   linkType: hard
 
@@ -1179,23 +1170,23 @@ __metadata:
 
 "rescript-mocha@github:dsiu/rescript-mocha#rescript-v12":
   version: 0.9.0
-  resolution: "rescript-mocha@https://github.com/dsiu/rescript-mocha.git#commit=16499a650c91e1aea0ae108761739de3ad52c773"
+  resolution: "rescript-mocha@https://github.com/dsiu/rescript-mocha.git#commit=522b82aad03f608d62a1a645a8f94d363b98ac22"
   dependencies:
     mocha: "npm:^9.2.2"
-  checksum: 10c0/c028f6bb7ca3f3bde604fbd5ed87dd3afc8c4b5b146465a4c38fce25026a94ba3c4040ef69aa4e4fe8caa8ea14d58dc9d9685e1379df3b7ff468f8ec9438f0d9
+  checksum: 10c0/22e133958444e261b0e349f2e48bda1f208418198e884ed331c295f8ae553c33c67cde816c7c2dcf64993ce5b25c8e253b941117e25ee084b32511d1af010f98
   languageName: node
   linkType: hard
 
-"rescript@npm:^12.0.0-beta.12":
-  version: 12.0.0-beta.12
-  resolution: "rescript@npm:12.0.0-beta.12"
+"rescript@npm:^12.0.0-beta.13":
+  version: 12.0.0-beta.13
+  resolution: "rescript@npm:12.0.0-beta.13"
   dependencies:
-    "@rescript/darwin-arm64": "npm:12.0.0-beta.12"
-    "@rescript/darwin-x64": "npm:12.0.0-beta.12"
-    "@rescript/linux-arm64": "npm:12.0.0-beta.12"
-    "@rescript/linux-x64": "npm:12.0.0-beta.12"
-    "@rescript/runtime": "npm:12.0.0-beta.12"
-    "@rescript/win32-x64": "npm:12.0.0-beta.12"
+    "@rescript/darwin-arm64": "npm:12.0.0-beta.13"
+    "@rescript/darwin-x64": "npm:12.0.0-beta.13"
+    "@rescript/linux-arm64": "npm:12.0.0-beta.13"
+    "@rescript/linux-x64": "npm:12.0.0-beta.13"
+    "@rescript/runtime": "npm:12.0.0-beta.13"
+    "@rescript/win32-x64": "npm:12.0.0-beta.13"
   dependenciesMeta:
     "@rescript/darwin-arm64":
       optional: true
@@ -1213,7 +1204,7 @@ __metadata:
     rescript: cli/rescript.js
     rescript-legacy: cli/rescript-legacy.js
     rescript-tools: cli/rescript-tools.js
-  checksum: 10c0/a8ed0e1f4ce909beb0415a896fe5d98181c3f505d68a2de1db8f3156b9ee3431373a931f2522809c1a1b313ff266997d25fae5261213bf8c2eb991bd328b2d34
+  checksum: 10c0/f6796c998eff4193ac14785aeaf5f064a6f0510fbe793459ca9a871dbd8e769d42545791261ee531a1692c6bffee3a87fb17f8a82c30d18c9cb0f773794141ef
   languageName: node
   linkType: hard
 
@@ -1382,16 +1373,15 @@ __metadata:
   linkType: hard
 
 "tar@npm:^7.4.3":
-  version: 7.4.3
-  resolution: "tar@npm:7.4.3"
+  version: 7.5.1
+  resolution: "tar@npm:7.5.1"
   dependencies:
     "@isaacs/fs-minipass": "npm:^4.0.0"
     chownr: "npm:^3.0.0"
     minipass: "npm:^7.1.2"
-    minizlib: "npm:^3.0.1"
-    mkdirp: "npm:^3.0.1"
+    minizlib: "npm:^3.1.0"
     yallist: "npm:^5.0.0"
-  checksum: 10c0/d4679609bb2a9b48eeaf84632b6d844128d2412b95b6de07d53d8ee8baf4ca0857c9331dfa510390a0727b550fd543d4d1a10995ad86cdf078423fbb8d99831d
+  checksum: 10c0/0dad0596a61586180981133b20c32cfd93c5863c5b7140d646714e6ea8ec84583b879e5dc3928a4d683be6e6109ad7ea3de1cf71986d5194f81b3a016c8858c9
   languageName: node
   linkType: hard
 
