@@ -10,8 +10,8 @@
   "bugs": "https://github.com/Risto-Stevcev/bs-jsverify/issues",
   "scripts": {
     "clean": "rescript clean",
-    "build": "rescript build --dev",
-    "watch": "rescript watch --dev",
+    "build": "rescript build",
+    "watch": "rescript watch",
     "test": "./node_modules/.bin/mocha lib/es6/test/Test*.mjs"
   },
   "keywords": [
@@ -21,11 +21,11 @@
   "author": "Risto Stevcev",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "rescript": "^12.0.0-rc.3",
+    "rescript": "^12.0.0-rc.5",
     "rescript-mocha": "github:dsiu/rescript-mocha#rescript-v12"
   },
   "dependencies": {
     "jsverify": "^0.8.4"
   },
-  "packageManager": "yarn@4.10.3"
+  "packageManager": "yarn@4.11.0"
 }
