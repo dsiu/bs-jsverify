@@ -10,14 +10,14 @@ describe("JsVerify", () => {
   )
 
   property1("Js.null(nat)", arb_null(arb_nat), n =>
-    switch Js.Null.toOption(n) {
+    switch Null.toOption(n) {
     | Some(n') => n' >= 0
     | None => true
     }
   )
 
   property1("Js.nullable(nat)", arb_nullable(arb_nat), n =>
-    switch Js.Nullable.toOption(n) {
+    switch Nullable.toOption(n) {
     | Some(n') => n' >= 0
     | None => true
     }
@@ -33,35 +33,34 @@ describe("JsVerify", () => {
   property1("sum of nats is >= 0", arb_array(arb_nat), a => a->Array.reduce(0, \"+") >= 0)
 
   let arb_record_c = unsafe_arb_record(
-    (Proxy: Types.proxy<{"d": bool, "e": Js.null<int>}>),
+    (Proxy: Types.proxy<{"d": bool, "e": Null.t<int>}>),
     {"d": arb_js_bool, "e": arb_null(arb_nat)},
   )
 
   property1(
     "unsafe_arb_record",
     unsafe_arb_record(
-      (Proxy: Types.proxy<{"a": string, "b": int, "c": {"d": bool, "e": Js.null<int>}}>),
+      (Proxy: Types.proxy<{"a": string, "b": int, "c": {"d": bool, "e": Null.t<int>}}>),
       {"a": arb_string, "b": arb_nat, "c": arb_record_c},
     ),
     r =>
-      switch Js.Types.classify(r["a"]) {
-      | Js.Types.JSString(_) => true
+      switch Type.Classify.classify(r["a"]) {
+      | String(_) => true
       | _ => false
       } &&
-      (switch Js.Types.classify(r["b"]) {
-      | Js.Types.JSNumber(n) => n >= 0.0
+      (switch Type.Classify.classify(r["b"]) {
+      | Number(n) => n >= 0.0
       | _ => false
       } &&
-      switch Js.Types.classify(r["c"]) {
-      | Js.Types.JSObject(o) =>
-        switch Js.Types.classify(Obj.magic(o)["d"]) {
-        | Js.Types.JSTrue
-        | Js.Types.JSFalse => true
+      switch Type.Classify.classify(r["c"]) {
+      | Object(o) =>
+        switch Type.Classify.classify(Obj.magic(o)["d"]) {
+        | Bool(_) => true
         | _ => false
         } &&
-        switch Js.Types.classify(Obj.magic(o)["e"]) {
-        | Js.Types.JSNull => true
-        | Js.Types.JSNumber(n) => n >= 0.0
+        switch Type.Classify.classify(Obj.magic(o)["e"]) {
+        | Null => true
+        | Number(n) => n >= 0.0
         | _ => false
         }
       | _ => false
@@ -71,9 +70,9 @@ describe("JsVerify", () => {
   property1("testing tuple", arb_tuple((arb_nat, arb_nat)), ((a, b)) => a + b >= a && a + b >= b)
 
   property1("testing sum", arb_sum((arb_nat, arb_string)), s =>
-    switch Js.Types.classify(s) {
-    | Js.Types.JSString(_)
-    | Js.Types.JSNumber(_) => true
+    switch Type.Classify.classify(s) {
+    | String(_)
+    | Number(_) => true
     | _ => false
     }
   )
@@ -81,13 +80,13 @@ describe("JsVerify", () => {
   property1("testing either", arb_either(arb_nat, arb_string), e =>
     switch e {
     | Left(l) =>
-      switch Js.Types.classify(l) {
-      | Js.Types.JSNumber(n) => n >= 0.0
+      switch Type.Classify.classify(l) {
+      | Number(n) => n >= 0.0
       | _ => false
       }
     | Right(r) =>
-      switch Js.Types.classify(r) {
-      | Js.Types.JSString(_) => true
+      switch Type.Classify.classify(r) {
+      | String(_) => true
       | _ => false
       }
     }

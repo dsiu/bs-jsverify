@@ -13,9 +13,7 @@
 *.cma
 *.a
 *.cmxa
-*.obj
 *~
-*.annot
 *.cmj
 *.bak
 lib/bs
@@ -27,3 +25,4 @@ lib/bs
 .bsb.lock
 node_modules
 lib
+/.yarn/install-state.gz

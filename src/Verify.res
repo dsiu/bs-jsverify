@@ -83,13 +83,13 @@ module Arbitrary = {
   external arb_not_empty_array: arbitrary<'a> => arbitrary<array<'a>> = "nearray"
 
   @module("jsverify") @scope("default")
-  external arb_date: arbitrary<Js.Date.t> = "datetime"
+  external arb_date: arbitrary<Date.t> = "datetime"
 
   let arb_list: arbitrary<'a> => arbitrary<list<'a>> = a =>
     smap(
       List.fromArray,
       List.toArray,
-      ~newShow=l => Js.Json.stringifyAny(List.toArray(l)) -> Js.Option.getWithDefault("", _),
+      ~newShow=l => JSON.stringifyAny(List.toArray(l))->Option.getOr(_, ""),
       arb_array(a),
     )
 
@@ -97,12 +97,12 @@ module Arbitrary = {
    * For objects *
    * * * * * * * */
   @module("jsverify") @scope("default")
-  external arb_object: arbitrary<Js.t<'a>> = "object"
+  external arb_object: arbitrary<{..}> = "object"
 
-  @module("jsverify") @scope("default") external arb_json: arbitrary<Js.Json.t> = "json"
+  @module("jsverify") @scope("default") external arb_json: arbitrary<JSON.t> = "json"
 
   @module("jsverify") @scope("default")
-  external arb_dict: arbitrary<'a> => arbitrary<Js.Dict.t<'a>> = "dict"
+  external arb_dict: arbitrary<'a> => arbitrary<dict<'a>> = "dict"
 
   /* * * * * *
    * Helpers *
@@ -145,10 +145,10 @@ module Arbitrary = {
 
   @module("jsverify") @scope("default")
   external unsafe_arb_record: (
-    @ignore Types.proxy<Js.t<'a>> /* set the record type as key: value */,
-    Js.t<'b>,
+    @ignore Types.proxy<{..}> /* set the record type as key: value */,
+    {..},
   ) => /* set the record type as key: arbitrary(value) */
-  arbitrary<Js.t<'a>> = "record"
+  arbitrary<{..}> = "record"
 
   /* Combines several arbitraries (as an untagged union)
    * This is represented as an abstract type `sum<'a>`. You'll need to use reflection in
@@ -165,14 +165,14 @@ module Arbitrary = {
     sum<('a, 'b, 'c, 'd)>,
   > = "oneof"
 
-  let arb_null: arbitrary<'a> => arbitrary<Js.null<'a>> = arb => {
-    let null: Js.null<'a> = Js.null
+  let arb_null: arbitrary<'a> => arbitrary<Null.t<'a>> = arb => {
+    let null: Null.t<'a> = Null.null
     Obj.magic(arb_sum((arb, arb_constant(null))))
   }
 
-  let arb_nullable: arbitrary<'a> => arbitrary<Js.nullable<'a>> = arb => {
-    let null: Js.nullable<'a> = Js.Nullable.null
-    let undefined: Js.nullable<'a> = Js.Nullable.undefined
+  let arb_nullable: arbitrary<'a> => arbitrary<Nullable.t<'a>> = arb => {
+    let null: Nullable.t<'a> = Nullable.null
+    let undefined: Nullable.t<'a> = Nullable.undefined
     Obj.magic(arb_sum'((arb, arb_constant(null), arb_constant(undefined))))
   }
 
@@ -182,7 +182,7 @@ module Arbitrary = {
       Null.fromOption,
       ~newShow=a =>
         switch a {
-        | Some(a') => "Some(" ++ (Js.Json.stringifyAny(a') -> Js.Option.getWithDefault("", _)) ++ ")"
+        | Some(a') => "Some(" ++ JSON.stringifyAny(a')->Option.getOr(_, "") ++ ")"
         | None => "None"
         },
       arb_null(arb),
@@ -207,8 +207,8 @@ module Arbitrary = {
         },
       ~newShow=e =>
         switch e {
-        | Left(l') => "Left(" ++ (Js.Json.stringifyAny(l') -> Js.Option.getWithDefault("", _)) ++ ")"
-        | Right(r') => "Right(" ++ (Js.Json.stringifyAny(r') -> Js.Option.getWithDefault("", _)) ++ ")"
+        | Left(l') => "Left(" ++ JSON.stringifyAny(l')->Option.getOr(_, "") ++ ")"
+        | Right(r') => "Right(" ++ JSON.stringifyAny(r')->Option.getOr(_, "") ++ ")"
         },
       arb_sum((
         unsafe_arb_record((Proxy: Types.proxy<{"left": 'a}>), {"left": arb_a}),
@@ -255,15 +255,15 @@ module Property = {
     "counterexample": 'a,
     "tests": int,
     "shrinks": int,
-    "exc": Js.nullable<JsExn.t>,
+    "exc": Nullable.t<JsExn.t>,
     "rngState": string,
   }
 
   type check_options = {
-    "tests": Js.nullable<int>,
-    "size": Js.nullable<int>,
-    "quiet": Js.nullable<bool>,
-    "rngState": Js.nullable<string>,
+    "tests": Nullable.t<int>,
+    "size": Nullable.t<int>,
+    "quiet": Nullable.t<bool>,
+    "rngState": Nullable.t<string>,
   }
 
   let options: (
@@ -274,16 +274,16 @@ module Property = {
     unit,
   ) => check_options = (~tests=?, ~size=?, ~quiet=?, ~rngState=?, _) =>
     {
-      "tests": tests -> Js.Nullable.fromOption,
-      "size": size -> Js.Nullable.fromOption,
-      "quiet": quiet -> Js.Nullable.fromOption,
-      "rngState": rngState -> Js.Nullable.fromOption,
+      "tests": tests->Nullable.fromOption,
+      "size": size->Nullable.fromOption,
+      "quiet": quiet->Nullable.fromOption,
+      "rngState": rngState->Nullable.fromOption,
     }
 
   /* Convert the abstract result type coming from the API untagged to a more usable form */
   let to_result: abs_result<'a> => option<result<'a>> = result =>
-    switch Js.Types.classify(result) {
-    | Js.Types.JSObject(value) => Some(Obj.magic(value))
+    switch Type.Classify.classify(result) {
+    | Object(value) => Some(Obj.magic(value))
     | _ => None
     }
 
@@ -295,7 +295,7 @@ module Property = {
     ~prop: async_property<'a>,
     ~options: check_options=?,
     unit,
-  ) => Js.Promise.t<abs_result<'a>> = "check"
+  ) => promise<abs_result<'a>> = "check"
 
   @module("jsverify") @scope("default")
   external assert': (~prop: property<'a>, ~options: check_options=?, unit) => unit = "assert"
@@ -344,13 +344,13 @@ module Property = {
    * `forall` with bool (async)  *
    * * * * * * * * * * * * * * * * * * */
   @module("jsverify") @scope("default")
-  external async_forall1: (arbitrary<'a>, 'a => Js.Promise.t<bool>) => async_property<'a> = "forall"
+  external async_forall1: (arbitrary<'a>, 'a => promise<bool>) => async_property<'a> = "forall"
 
   @module("jsverify") @scope("default")
   external async_forall2: (
     arbitrary<'a>,
     arbitrary<'b>,
-    ('a, 'b) => Js.Promise.t<bool>,
+    ('a, 'b) => promise<bool>,
   ) => async_property<sum<('a, 'b)>> = "forall"
 
   @module("jsverify") @scope("default")
@@ -358,7 +358,7 @@ module Property = {
     arbitrary<'a>,
     arbitrary<'b>,
     arbitrary<'c>,
-    ('a, 'b, 'c) => Js.Promise.t<bool>,
+    ('a, 'b, 'c) => promise<bool>,
   ) => async_property<sum<('a, 'b, 'c)>> = "forall"
 
   @module("jsverify") @scope("default")
@@ -367,7 +367,7 @@ module Property = {
     arbitrary<'b>,
     arbitrary<'c>,
     arbitrary<'d>,
-    ('a, 'b, 'c, 'd) => Js.Promise.t<bool>,
+    ('a, 'b, 'c, 'd) => promise<bool>,
   ) => async_property<sum<('a, 'b, 'c, 'd)>> = "forall"
 
   @module("jsverify") @scope("default")
@@ -377,7 +377,7 @@ module Property = {
     arbitrary<'c>,
     arbitrary<'d>,
     arbitrary<'e>,
-    ('a, 'b, 'c, 'd, 'e) => Js.Promise.t<bool>,
+    ('a, 'b, 'c, 'd, 'e) => promise<bool>,
   ) => async_property<sum<('a, 'b, 'c, 'd, 'e)>> = "forall"
 
   /* * * * * * * * * * * * * * * * * * * * *
@@ -401,7 +401,7 @@ module Property = {
   external property1': (string, arbitrary<'a>, 'a => bool) => unit = "property"
 
   @module("jsverify") @scope("default")
-  external async_property1': (string, arbitrary<'a>, 'a => Js.Promise.t<bool>) => unit = "property"
+  external async_property1': (string, arbitrary<'a>, 'a => promise<bool>) => unit = "property"
 
   @module("jsverify") @scope("default")
   external property2': (string, arbitrary<'a>, arbitrary<'b>, ('a, 'b) => bool) => unit = "property"
@@ -411,7 +411,7 @@ module Property = {
     string,
     arbitrary<'a>,
     arbitrary<'b>,
-    ('a, 'b) => Js.Promise.t<bool>,
+    ('a, 'b) => promise<bool>,
   ) => unit = "property"
 
   @module("jsverify") @scope("default")
@@ -429,7 +429,7 @@ module Property = {
     arbitrary<'a>,
     arbitrary<'b>,
     arbitrary<'c>,
-    ('a, 'b, 'c) => Js.Promise.t<bool>,
+    ('a, 'b, 'c) => promise<bool>,
   ) => unit = "property"
 
   @module("jsverify") @scope("default")
@@ -449,7 +449,7 @@ module Property = {
     arbitrary<'b>,
     arbitrary<'c>,
     arbitrary<'d>,
-    ('a, 'b, 'c, 'd) => Js.Promise.t<bool>,
+    ('a, 'b, 'c, 'd) => promise<bool>,
   ) => unit = "property"
 
   @module("jsverify") @scope("default")
@@ -471,7 +471,7 @@ module Property = {
     arbitrary<'c>,
     arbitrary<'d>,
     arbitrary<'e>,
-    ('a, 'b, 'c, 'd, 'e) => Js.Promise.t<bool>,
+    ('a, 'b, 'c, 'd, 'e) => promise<bool>,
   ) => unit = "property"
 
   /* * * * * * * * * * * * * * * * * * * * * *
@@ -480,20 +480,18 @@ module Property = {
   let property1 = (s, a1, fn) => property1'(s, a1, a => fn(a))
 
   let async_property1 = (s, a1, fn) =>
-    async_property1'(s, a1, a => fn(a) -> Js.Promise.then_(x => x -> Js.Promise.resolve, _))
+    async_property1'(s, a1, a => fn(a)->Promise.then(x => x->Promise.resolve))
 
   let property2 = (s, a1, a2, fn) => property2'(s, a1, a2, (a, b) => fn(a, b))
 
   let async_property2 = (s, a1, a2, fn) =>
-    async_property2'(s, a1, a2, (a, b) =>
-      fn(a, b) -> Js.Promise.then_(x => x -> Js.Promise.resolve, _)
-    )
+    async_property2'(s, a1, a2, (a, b) => fn(a, b)->Promise.then(x => x->Promise.resolve))
 
   let property3 = (s, a1, a2, a3, fn) => property3'(s, a1, a2, a3, (a, b, c) => fn(a, b, c))
 
   let async_property3 = (s, a1, a2, a3, fn) =>
     async_property3'(s, a1, a2, a3, (a, b, c) =>
-      fn(a, b, c) -> Js.Promise.then_(x => x -> Js.Promise.resolve, _)
+      fn(a, b, c)->Promise.then(x => x->Promise.resolve)
     )
 
   let property4 = (s, a1, a2, a3, a4, fn) =>
@@ -501,7 +499,7 @@ module Property = {
 
   let async_property4 = (s, a1, a2, a3, a4, fn) =>
     async_property4'(s, a1, a2, a3, a4, (a, b, c, d) =>
-      fn(a, b, c, d) -> Js.Promise.then_(x => x -> Js.Promise.resolve, _)
+      fn(a, b, c, d)->Promise.then(x => x->Promise.resolve)
     )
 
   let property5 = (s, a1, a2, a3, a4, a5, fn) =>
@@ -509,6 +507,6 @@ module Property = {
 
   let async_property5 = (s, a1, a2, a3, a4, a5, fn) =>
     async_property5'(s, a1, a2, a3, a4, a5, (a, b, c, d, e) =>
-      fn(a, b, c, d, e) -> Js.Promise.then_(x => x -> Js.Promise.resolve, _)
+      fn(a, b, c, d, e)->Promise.then(x => x->Promise.resolve)
     )
 }
