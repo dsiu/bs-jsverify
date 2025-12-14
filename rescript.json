@@ -1,7 +1,5 @@
 {
   "name": "bs-jsverify",
-  "version": "0.10.0",
-  "refmt": 3,
   "namespace": true,
   "sources": [{
     "dir": "src",
